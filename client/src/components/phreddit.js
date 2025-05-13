@@ -1,20 +1,15 @@
-import {useState, useEffect} from 'react';
-import axios from 'axios';
-
+// import Model from "../models/model.js";
+import Header from "./Header.js";
+import Main from "./Main.js";
+import NavBar from "./NavBar.js";
+// component for main layout
+// use context to surround the App.js comp itself
 export default function Phreddit() {
-    const [msg, setMsg] = useState("");
-    
-    useEffect(() => {
-        axios.get("http://127.0.0.1:8000/")
-        .then((res) => {
-            setMsg(res.data);
-        })
-        .catch((err) => {
-            console.log("Request failed");
-        });
-    }, []);
-    
   return (
-    <h1> {msg} </h1>
+    <div className="container">
+      <Header />
+      <NavBar />
+      <Main />
+    </div>
   );
 }

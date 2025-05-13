@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,1576 @@
   to {
     transform: rotate(360deg);
   }
+} */
+/* css variables (mainly for color) */
+:root {
+  --color-primary: #ff4500;
+  --color-grey: #e6e9ec;
+  --color-mute-grey: #7e8c9e;
+  --color-dark-grey: #3b3b3b;
+}
+
+/* global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  /* font-family: roboto; */
+}
+
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* to be used to hide content */
+.hidden {
+  /* !important ensures display: none is applied no matter what */
+  display: none !important;
+}
+
+/* General layout container */
+.container {
+  display: grid;
+  grid-template-columns: 15.625em 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+/*///////////////////////////////////////////////////////////////////*/
+
+/* Header + container for header*/
+.header {
+  font-size: 2em;
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  grid-column: 1 / -1;
+  grid-row: 1 / 1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  border-bottom: 0.1rem solid black;
+}
+
+.header-center {
+  flex-grow: 1;
+  margin: 0 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  color: var(--color-primary);
+  margin-left: 3em;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+/* Search Bar */
+.search-bar {
+  flex-grow: 1;
+  max-width: 50%;
+  min-width: 200px;
+  height: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--color-mute-grey);
+  background-color: var(--color-grey);
+  border-radius: 2rem;
+  border-color: var(--color-grey);
+  border-style: solid;
+}
+
+.search-bar:focus {
+  outline: none; /*overrides default focus color*/
+}
+
+/* Create post button */
+.create-post-btn {
+  height: 100%;
+  width: auto;
+  padding: 1rem 2rem;
+  margin-right: 3rem;
+  border-radius: 2rem;
+  border-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  border-style: solid;
+  font-size: 1rem;
+}
+
+.create-post-btn:hover,
+.create-post-btn:focus {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+}
+
+/* create post form: */
+.create-post-form {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-height: 80vh;
+  padding: 1rem;
+  margin: 1.5rem auto;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.create-post-form h2 {
+  margin-bottom: 1rem;
+}
+
+.create-post-form textarea {
+  border: 1px solid var(--color-grey);
+  background-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  resize: vertical;
+  padding: 0.1rem 0.25rem;
+}
+.create-post-form select {
+  border: 1px solid var(--color-grey);
+  background-color: var(--color-grey);
+  color: var(--color-mute-grey);
+}
+
+.create-post-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+.input-group-flair label,
+select {
+  margin-bottom: 1rem;
+}
+
+.input-group-flair {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+/* Create comment form */
+.create-comment-form {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-height: 80vh;
+  padding: 1rem;
+  margin: 1.5rem auto;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.create-comment-form textarea {
+  width: 100%;
+  height: 4rem;
+  padding: 0.8rem;
+  border: 1px solid var(--color-grey);
+  border-radius: 25px;
+  background-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  resize: vertical;
+  margin-bottom: 0.5rem;
+}
+
+.create-comment-form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.create-comment-form h2 {
+  margin-bottom: 1.5rem;
+}
+
+.create-comment-form p {
+  margin-bottom: 1rem;
+}
+/*///////////////////////////////////////////////////////////////////*/
+
+/** Nav Bar **/
+/* container */
+.nav-bar {
+  grid-row: 2 / -1;
+  grid-column: 1 / 2;
+  height: 100vh;
+  border: none;
+  border-right: 0.1rem solid black;
+  display: flex;
+  justify-content: center;
+}
+
+/* ul element -> inner container of the nav bar */
+.nav-bar-inner {
+  width: 78%;
+  display: flex;
+  list-style-type: none;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+/* Home button */
+/* .home {
+  display: flex;
+  margin-top: 1rem;
+  width: 100%;
+  background-color: var(--color-grey);
+  padding: 0.2rem 0;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.link-home {
+  display: block;
+  color: black;
+  background-color: var(--color-grey);
+  font-size: 1.1rem;
+  width: 100%;
+  border: none;
+}
+
+.link-home:hover,
+.link-home:focus,
+.home:hover,
+.home:focus {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+} */
+
+.home {
+  display: flex;
+  margin-top: 1rem;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: 500;
+  overflow: hidden;
+  background-color: var(--color-grey);
+}
+
+.link-home {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  /* without it, it makes the hover inconsistent (i.e. still can see --color-grey in some cases) */
+  background: transparent;
+  color: black;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+  text-align: left;
+}
+
+/* Apply hover to the container */
+.home:hover {
+  background-color: var(--color-primary);
+}
+
+.home:hover .link-home {
+  color: white;
+  cursor: pointer;
+}
+
+.communities-header {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  color: black;
+}
+
+.communities-content {
+  /* make the header left aligned by shifting everything else on bottom  */
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-create-community {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  background-color: var(--color-grey);
+  border: none;
+  border-radius: 6px;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.btn-create-community:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.community-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: 0.7rem;
+}
+
+.community-item a {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  padding: 4px 0;
+}
+.community-item:hover {
+  cursor: pointer;
+}
+
+/*///////////////////////////////////////////////////////////////////*/
+
+/* main content */
+.main {
+  /* background-color: red; */
+  grid-column: 2 / -1;
+  grid-row: 2 / -1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+/* banner: header, x post, sort btns, community banner */
+.banner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  /* Middle row expands */
+  grid-template-rows: auto 1fr auto;
+  border: none;
+  border-bottom: 0.1rem solid black;
+  width: 100%;
+  height: auto;
+}
+
+.banner-header {
+  padding: 0.5rem;
+  font-weight: 900;
+  color: var(--color-primary);
+}
+
+/* info about community */
+.community-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+  align-self: end;
+  grid-column: 1 / 2;
+  font-size: 1.1rem;
+}
+
+.desc-community {
+  font-weight: 650;
+}
+
+/* num post */
+.num-post {
+  padding: 0.5rem;
+  align-self: end;
+  grid-column: 1 / 2;
+
+  /* ensures it will always be on bottom left */
+  grid-row: -1;
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+/* sort buttons */
+.sort-btns,
+.join-leave-btn {
+  display: inline-flex;
+  gap: 0.5rem;
+  grid-column: 2/-1;
+  grid-row: 1 /1;
+  align-self: center;
+  padding: 0.5rem;
+}
+
+.join-leave-btn {
+  margin-top: 0.7rem;
+}
+
+.sort-btn,
+.join-leave-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 550;
+  border-radius: 8px;
+  border: none;
+}
+
+.sort-btn:hover,
+.join-leave-btn:hover {
+  cursor: pointer;
+}
+
+.join-leave-btn .posts-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  /* subtract 150px from 100vh (total view of screen) to account for the banner at the top    
+      additional 150px accounts for when the 'all post' header banner changes to specific community
+      hence 300px in total
+      Prevents last post from being cut off
+  */
+  max-height: calc(100vh - 300px);
+  padding-bottom: 1rem;
+}
+
+.post {
+  padding: 1.2rem;
+  margin: 0.7rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-direction: column;
+  border: none;
+  /* border-bottom: 0.1rem solid black; */
+  border-bottom: 0.1rem dotted black;
+}
+
+.post:hover {
+  cursor: pointer;
+}
+
+/* stats of views and comments */
+.stats {
+  display: flex;
+  gap: 1rem;
+}
+
+/* create community form */
+.create-community-form {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-height: 80vh;
+  padding: 1rem;
+  margin: 1.5rem auto;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.create-community-form h2 {
+  font-weight: 750;
+  margin-bottom: 2.5rem;
+}
+.create-comment-form label {
+  font-weight: 650;
+}
+
+.error-msg {
+  /* without the overriding !important, for some reason it wouldn't appear as red */
+  color: red !important;
+  font-weight: bold;
+  margin-top: 3px;
+  font-size: 0.9rem;
+}
+
+.create-community-form p.error-msg {
+  color: red !important;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.create-community-form textarea {
+  width: 100%;
+  height: 4rem;
+  padding: 0.8rem;
+  border: 1px solid var(--color-grey);
+  border-radius: 25px;
+  background-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.create-community-form label {
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.create-comment-form .input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.btn-submit {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  align-self: center;
+}
+
+.btn-submit:hover {
+  background-color: var(--color-primary);
+}
+
+/* post view */
+.post-info {
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: flex-start;
+  border-bottom: black solid 0.1rem;
+}
+
+.title-post {
+  color: var(--color-primary);
+}
+.post-content {
+  font-weight: 520;
+  font-size: 1rem;
+}
+.post-stats {
+  color: var(--color-mute-grey);
+  font-weight: 510;
+}
+.post-flair {
+  color: var(--color-mute-grey);
+  font-weight: 510;
+}
+.post-community-time {
+  font-size: 0.9rem;
+}
+
+.add-comment {
+  background-color: var(--color-grey);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.add-comment:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+/* comment and related posts*/
+.post-view {
+  display: flex;
+  flex-direction: column;
+  /* needed to prevent the last comment from being cutoff */
+  height: 85vh;
+  overflow-y: auto;
+}
+
+.post-info {
+  flex-shrink: 0;
+  padding: 1rem;
+  border-bottom: 1px solid black;
+}
+
+.comments-list {
+  flex-grow: 1;
+  /* allow scrolling for entire post view */
+  overflow-y: visible;
+  /* for safe measure - padding added because comments sometimes get cut out without it */
+  padding-bottom: 2rem;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-left: black solid 0.1rem;
+  margin: 1rem;
+
+  /* indenting - each reply indentation will be a multiple of 32px */
+  margin-left: 32px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-comment {
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  border-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  border-style: solid;
+}
+
+.reply-button {
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  border-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  border-style: solid;
+}
+.reply-button:hover {
+  cursor: pointer;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+/*///////////////////////////////////////////////////////////////////*/
+/* css variables (mainly for color) */
+:root {
+  --color-primary: #ff4500;
+  --color-grey: #e6e9ec;
+  --color-mute-grey: #7e8c9e;
+  --color-dark-grey: #3b3b3b;
+}
+
+/* global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  /* font-family: roboto; */
+}
+
+body {
+  /* remove scrolling for entire page */
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* to be used to hide content */
+.hidden {
+  /* !important ensures display: none is applied no matter what */
+  display: none !important;
+}
+
+/* General layout container */
+.container {
+  display: grid;
+  grid-template-columns: 15.625em 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+/*///////////////////////////////////////////////////////////////////*/
+
+/* Header + container for header*/
+.header {
+  font-size: 2em;
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  grid-column: 1 / -1;
+  grid-row: 1 / 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  border-bottom: 0.1rem solid black;
+}
+
+.logo {
+  color: var(--color-primary);
+  margin-left: 3em;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+/* Search Bar */
+.search-bar {
+  flex-grow: 1;
+  max-width: 50%;
+  min-width: 200px;
+  height: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--color-mute-grey);
+  background-color: var(--color-grey);
+  border-radius: 2rem;
+  border-color: var(--color-grey);
+  border-style: solid;
+}
+.search-bar:focus {
+  outline: none; /*overrides default focus color*/
+}
+
+/* Create post button */
+.create-post-btn {
+  height: 100%;
+  width: auto;
+  padding: 1rem 2rem;
+  margin-right: 3rem;
+  border-radius: 2rem;
+  border-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  border-style: solid;
+  font-size: 1rem;
+}
+
+.create-post-btn:hover,
+.create-post-btn:focus {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+}
+
+/* create post form: */
+.create-post-form {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-height: 80vh;
+  padding: 1rem;
+  margin: 1.5rem auto;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.create-post-form h2 {
+  margin-bottom: 1rem;
+}
+
+.create-post-form textarea {
+  border: 1px solid var(--color-grey);
+  background-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  resize: vertical;
+  padding: 0.1rem 0.25rem;
+}
+.create-post-form select {
+  border: 1px solid var(--color-grey);
+  background-color: var(--color-grey);
+  color: var(--color-mute-grey);
+}
+
+.create-post-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+.input-group-flair label,
+select {
+  margin-bottom: 1rem;
+}
+
+.input-group-flair {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+/* Create comment form */
+.create-comment-form {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-height: 80vh;
+  padding: 1rem;
+  margin: 1.5rem auto;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.create-comment-form textarea {
+  width: 100%;
+  height: 4rem;
+  padding: 0.8rem;
+  border: 1px solid var(--color-grey);
+  border-radius: 25px;
+  background-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  resize: vertical;
+  margin-bottom: 0.5rem;
+}
+
+.create-comment-form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.create-comment-form h2 {
+  margin-bottom: 1.5rem;
+}
+
+.create-comment-form p {
+  margin-bottom: 1rem;
+}
+/*///////////////////////////////////////////////////////////////////*/
+
+/** Nav Bar **/
+/* container */
+.nav-bar {
+  grid-row: 2 / -1;
+  grid-column: 1 / 2;
+  height: 100vh;
+  border: none;
+  border-right: 0.1rem solid black;
+  display: flex;
+  justify-content: center;
+}
+
+/* ul element -> inner container of the nav bar */
+.nav-bar-inner {
+  width: 78%;
+  display: flex;
+  list-style-type: none;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+/* Home button */
+.home {
+  display: flex;
+  margin-top: 1rem;
+  width: 100%;
+  background-color: var(--color-grey);
+  padding: 0.2rem 0;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.link-home {
+  display: block;
+  color: black;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.link-home:hover,
+.link-home:focus,
+.home:hover,
+.home:focus {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+}
+
+.communities-header {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  color: black;
+}
+
+.communities-content {
+  /* make the header left aligned by shifting everything else on bottom  */
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-create-community {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  background-color: var(--color-grey);
+  border: none;
+  border-radius: 6px;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.btn-create-community:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.community-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: 0.7rem;
+}
+
+.community-item a {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  padding: 4px 0;
+}
+.community-item p {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  padding: 4px 8px;
+}
+.community-item:hover {
+  cursor: pointer;
+}
+
+/*///////////////////////////////////////////////////////////////////*/
+
+/* main content */
+.main {
+  /* background-color: red; */
+  grid-column: 2 / -1;
+  grid-row: 2 / -1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+/* banner: header, x post, sort btns, community banner */
+.banner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  /* Middle row expands */
+  grid-template-rows: auto 1fr auto;
+  border: none;
+  border-bottom: 0.1rem solid black;
+  width: 100%;
+  height: auto;
+}
+
+.banner-header {
+  padding: 0.5rem;
+  font-weight: 900;
+  color: var(--color-primary);
+}
+
+/* info about community */
+.community-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+  align-self: end;
+  grid-column: 1 / 2;
+  font-size: 1.1rem;
+}
+
+.desc-community {
+  font-weight: 650;
+}
+
+/* num post */
+.num-post {
+  padding: 0.5rem;
+  align-self: end;
+  grid-column: 1 / 2;
+
+  /* ensures it will always be on bottom left */
+  grid-row: -1;
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+/* sort buttons */
+.sort-btns {
+  display: inline-flex;
+  gap: 0.5rem;
+  grid-column: 2/-1;
+  grid-row: 1 /1;
+  align-self: center;
+  padding: 0.5rem;
+}
+
+.sort-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 550;
+  border-radius: 8px;
+  border: none;
+}
+
+.sort-btn:hover {
+  cursor: pointer;
+}
+
+.posts-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  /* subtract 150px from 100vh (total view of screen) to account for the banner at the top    
+      additional 150px accounts for when the 'all post' header banner changes to specific community
+      hence 300px in total
+      Prevents last post from being cut off
+  */
+  max-height: calc(100vh - 300px);
+  padding-bottom: 1rem;
+}
+
+.post {
+  padding: 1.2rem;
+  margin: 0.7rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-direction: column;
+  border: none;
+  /* border-bottom: 0.1rem solid black; */
+  border-bottom: 0.1rem dotted black;
+}
+
+.post:hover {
+  cursor: pointer;
+}
+
+/* stats of views and comments */
+.stats {
+  display: flex;
+  gap: 1rem;
+}
+
+/* create community form */
+.create-community-form {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  max-height: 80vh;
+  padding: 1rem;
+  margin: 1.5rem auto;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.create-community-form h2 {
+  font-weight: 750;
+  margin-bottom: 2.5rem;
+}
+.create-comment-form label {
+  font-weight: 650;
+}
+
+.error-msg {
+  /* without the overriding !important, for some reason it wouldn't appear as red */
+  color: red !important;
+  font-weight: bold;
+  margin-top: 3px;
+  font-size: 0.9rem;
+}
+
+.create-community-form p.error-msg {
+  color: red !important;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.create-community-form textarea {
+  width: 100%;
+  height: 4rem;
+  padding: 0.8rem;
+  border: 1px solid var(--color-grey);
+  border-radius: 25px;
+  background-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.create-community-form label {
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.create-comment-form .input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.btn-submit {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  align-self: center;
+}
+
+.btn-submit:hover {
+  background-color: var(--color-primary);
+}
+
+/* post view */
+.post-info {
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: flex-start;
+  border-bottom: black solid 0.1rem;
+}
+
+.title-post {
+  color: var(--color-primary);
+}
+.post-content {
+  font-weight: 520;
+  font-size: 1rem;
+}
+.post-stats {
+  color: var(--color-mute-grey);
+  font-weight: 510;
+}
+.post-flair {
+  color: var(--color-mute-grey);
+  font-weight: 510;
+}
+.post-community-time {
+  font-size: 0.9rem;
+}
+
+.add-comment {
+  background-color: var(--color-grey);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.add-comment:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+/* comment and related posts*/
+.post-view {
+  display: flex;
+  flex-direction: column;
+  /* needed to prevent the last comment from being cutoff */
+  height: 85vh;
+  overflow-y: auto;
+}
+
+.post-info {
+  flex-shrink: 0;
+  padding: 1rem;
+  border-bottom: 1px solid black;
+}
+
+.comments-list {
+  flex-grow: 1;
+  /* allow scrolling for entire post view */
+  overflow-y: visible;
+  /* for safe measure - padding added because comments sometimes get cut out without it */
+  padding-bottom: 2rem;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-left: black solid 0.1rem;
+  margin: 1rem;
+
+  /* indenting - each reply indentation will be a multiple of 32px */
+  margin-left: 32px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-comment {
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  border-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  border-style: solid;
+}
+
+.reply-button {
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  border-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  border-style: solid;
+}
+.reply-button:hover {
+  cursor: pointer;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+/*///////////////////////////////////////////////////////////////////*/
+.community-item.selected {
+  /* indicates current community on navbar to the left is selected */
+  /* background-color: var(--color-primary); */
+  background-color: var(--color-grey);
+}
+
+.home.home-active {
+  background-color: var(--color-primary);
+}
+
+.home.home-active .link-home {
+  color: black;
+}
+
+.btn-create-community.active {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* /////////////////////////////////////////// */
+/* welcome page css */
+.welcome-pg-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: #ffffff;
+}
+
+/* Wrap the content in a box with padding + shadow */
+.welcome-pg-border {
+  padding: 3rem 4rem;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.welcome-logo {
+  font-size: 4rem;
+  color: var(--color-primary);
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.select-btns {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.welcome-btn {
+  padding: 0.8rem 2rem;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-grey);
+  color: var(--color-dark-grey);
+  cursor: pointer;
+}
+
+.welcome-btn:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.header-button-group {
+  display: flex;
+  gap: 10px; /* adds spacing between buttons */
+  align-items: center;
+}
+/* the grey disable feature for header btns */
+.create-post-btn:disabled,
+.create-post-btn:disabled:hover,
+.create-post-btn:disabled:focus {
+  background-color: #e0e0e0;
+  color: #a0a0a0;
+  border: 1px solid #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  outline: none;
+}
+
+/* confirm screen  */
+/* covers the screen henze absolute pos with zindexing */
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.confirm-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-buttons button {
+  margin: 0 10px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-buttons button:hover {
+  background-color: #eee;
+}
+
+/*User Profile*/
+.user-desc {
+  background-color: var(--color-grey);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1.5rem;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.user-desc h1 {
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.user-desc h3 {
+  margin: 0.3rem 0;
+  color: var(--color-dark-grey);
+  font-weight: 500;
+}
+
+/*Toggle Buttons*/
+.toggle-btns {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 1.5rem;
+}
+
+.select-btn {
+  background-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  border: 1px solid var(--color-grey);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.select-btn:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* User desc list stuff */
+.user-profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1.5rem;
+}
+
+.user-profile-item {
+  background-color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-grey);
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.user-profile-item h3 {
+  font-size: 1.1rem;
+  color: var(--color-dark-grey);
+  padding-bottom: 1rem;
+}
+
+.user-profile-item:hover {
+  cursor: pointer;
+}
+
+.user-profile-item button {
+  padding: 0.4rem 0.9rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.user-profile-item button:hover {
+  background-color: #d83a00;
+}
+
+.user-profile-list-header {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* delete button style */
+.btn-delete {
+  background-color: var(--color-mute-grey);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: var(--color-primary);
+  background-color: #e04141;
+}
+
+.btn-create-community:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.user-profile-outer-scroll {
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.user-profile-scroll-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  height: calc(100vh - 100px);
+  padding-right: 0.5rem;
+}
+.profile-scroll-wrapper {
+  flex-grow: 1;
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
+  /* need to add more padding on bottom so last element won't get cut off */
+  padding: 0 1.5rem 15rem 1.5rem;
+}
+
+.profile-lists {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.user-profile-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.back-btn {
+  background-color: var(--color-mute-grey);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+
+.back-btn:hover {
+  background-color: var(--color-primary);
+}
+
+/* vote btn */
+.vote-btn {
+  height: 100%;
+  width: auto;
+  padding: 0.5rem 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 1rem;
+  border-color: var(--color-grey);
+  color: var(--color-mute-grey);
+  border-style: solid;
+  font-size: 0.8rem;
+}
+
+.vote-btn:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+}
+
+.vote-btn.active-vote {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
 }
