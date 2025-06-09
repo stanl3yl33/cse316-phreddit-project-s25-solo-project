@@ -1,64 +1,122 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/2tEDYwzN)
 
 # Term Project
+## Description:
+This is a MERN Stack project that I have done for my CSE 316 last semester. I have forked this from my github classroom repo and updated the current readme.
 
-Add design docs in _images/_
+## Instructions to Set Up and Run the Project
 
-## Instructions to setup and run project
+Follow the steps below to install dependencies, initialize the database, and start both the server and client applications.
 
-Clearly explain the steps required to install and configure necessary packages,
-for both the server and the client, and the sequence of steps required to get
-your application running.
+---
 
-Instructions:
+### Step 1: Install Dependencies
 
-- I only used the packages that were used in class. Namely: bcrypt, connect-mongo, cors, express, express-session, mongoose, and nodemon
+This project uses only the packages introduced in class:
 
-- First install those required dependencies:
+- `bcrypt`, `connect-mongo`, `cors`, `express`, `express-session`, `mongoose`, and `nodemon`
 
-  - If we have access to the package.json files:
+#### Option A: Using `package.json` (Recommended Way)
 
-  * Simply go into server (cd server) and type npm install
-  * Afterwards navigate to the client directory and type: npm install
+1. Install server dependencies:
 
-  -Alternatively, if we want to install them individually do the following.
+   ```bash
+   cd server
+   npm install
+   ```
 
-  - For server side:
+2. Install client dependencies:
 
-    - navigate to the server folder. i.e. cd server
-    - then do the following npm installs:
+   ```bash
+   cd ../client
+   npm install
+   ```
 
-    1. npm install bcrypt
-    2. npm install connect-mongo
-    3. npm install express
-    4. npm install express-session
-    5. npm install mongoose
-    6. npm install nodemon
+#### Option B: Manually Install Packages (If `package.json` is unavailable)
 
-  - For client side:
+**For the server**:
 
-    - navigate to client folder. i.e. cd client
-    - then do the following npm installs
+```bash
+cd server
+npm install bcrypt
+npm install connect-mongo
+npm install express
+npm install express-session
+npm install mongoose
+npm install nodemon
+```
 
-    1. npm install
-    2. npm install axios
+**For the client**:
 
-- Second, we need to run init.js to populate the database
-- init.js takes in 3 command line arguments: the email of the admin, displayname of admin, and the password in plaintext of the admin
-- So in server folder, go to terminal and type the following:
-- node init.js yourAdminEmail yourAdminDisplayName yourAdminPassword
+```bash
+cd ../client
+npm install
+npm install axios
+```
 
-- Ex: node init.js admin@phreddit.com Admin32 password123
+---
 
-- Finally we need to run the server
-- Ensure that mongod is running in the background. Assuming, mongodb is set up like how prof. kane taught us, go to command prompt and type 'mongod' to run it in background
-- Afterwards:
-- Go into the server folder and type: nodemon server.js
-- this will run the server
+### Step 2: Initialize the Database
 
-- Next go to the client side and go to the terminal and type: npm start
-- this allows us access to app and boots it up in the welcome page
-- From there you can login, register, or view as guest to interact with the appplication
+You must run the `init.js` script to populate the MongoDB database with an initial admin user. This should be done before starting the server.
+
+#### Usage:
+
+```bash
+cd server
+node init.js <admin_email> <admin_display_name> <admin_password>
+```
+
+#### Example:
+
+```bash
+node init.js admin@phreddit.com Admin32 password123
+```
+
+This will create an admin user with the given email, display name, and password in the database.
+
+---
+
+### Step 3: Start the Application
+
+1. Make sure MongoDB is running. If the system PATH for MongoDB was set up, simply write the following in a terminal:
+
+   ```bash
+   mongod
+   ```
+
+2. In a new terminal, start the server:
+
+   ```bash
+   cd server
+   nodemon server.js
+   ```
+
+3. In another terminal, start the client:
+
+   ```bash
+   cd client
+   npm start
+   ```
+
+---
+
+### Access the Application
+
+Once both the server and client are running, open your browser and go to:
+
+```bash
+http://localhost:3000
+```
+
+You will see the welcome page, where you can:
+
+- Register a new user
+- Log in using the admin credentials you created
+- Browse as a guest
+
+From there, you can interact with the application.
+
 
 ---
 
@@ -66,4 +124,4 @@ In the sections below, list and describe each contribution briefly.
 
 ## Team Member 1 Contribution
 
-I did all the front-end and back-end changes
+Front-end React Components, Back-end server, setting up routes, handlers for each routes, and node script for initializing databasae 
